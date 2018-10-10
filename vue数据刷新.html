@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>	
+</head>
+
+<body>
+<div id="demo">{{fullName}}</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+<script src="assets/lib/ajax.1.9.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+        //var post_param = {
+        //    OpenId: 'o9k6gt_lQ64xCjNEhKVaVbDnf-Ec',
+        //    UID: 'PC7914D20180421094804'
+        //};
+        //ajax.longPolling('post', '/ashx/LotteryHandler.ashx?act=GetMyCallPeopleList', post_param,
+        //                    function (result) {
+        //                        console.info(result);
+        //                        result = $.parseJSON(result);
+
+        var vm = new Vue({
+            el: '#demo',
+            data: {
+                id: 0,
+                isLoad: !1,
+                firstName: 'firstname',
+                lastName: 'lastname',
+                fullName: 'fullNAME'
+            },
+            watch:{
+                id:function(val){
+                    this.fullName=  this.firstName + ' ' + this.lastName + ' ' + val;
+                }
+            },
+            computed: {
+                fullName: function(){
+                    return this.firstName + ' ' + this.lastName + ' ' + this.id
+                }                
+            }
+        })
+        var intervalRun = function () {
+            var rnd = Math.random();
+            console.info('rnd => ' + rnd);            
+            vm.id = rnd;
+        }
+        var timer = setInterval(intervalRun, 2000);
+    }
+</script>
+</body>
+</html>
