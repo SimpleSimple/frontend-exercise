@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript" src="assets/lib/ajax.1.9.js"></script>
+<script type="text/javascript">
+
+function test_setTimeout(){
+	var timer,
+		counter=0;
+	while(counter <= 20){
+		timer =setTimeout(function(){
+			counter++;
+			console.info('setTimeout... '+counter);
+		}, 1000);
+	}
+}
+
+function customInterval(){
+	var timer;
+	var count=0;
+	return {
+		loop: function(){
+			
+		},
+		start: function(){
+			count=count+1;
+			console.info('count:'+count);
+			if(count>=5){
+//				clearTimeout(timer);
+				clearInterval(timer);
+				return;
+			}
+			timer = setInterval(this.loop, 500);
+		}
+	}
+}
+var ci = customInterval();
+ci.start();
+
+
+test_setTimeout();
+
+
+</script>
+</body>
+</html>

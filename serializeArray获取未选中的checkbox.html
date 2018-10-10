@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<form id="form">
+<div class="row">
+<label>是否选中</label>
+<input type="checkbox" name="IsFafang" id="IsFafang" />
+</div>
+<div class="row">
+<label>1</label>
+<input type="text" name="UserName" id="UserName" />
+</div>
+</form>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function(){
+	$('#IsFafang').change(function(){
+		var oThis=$(this);
+		if(oThis.prop('checked')){
+			oThis.val(1);
+		}else
+			oThis.val(0);
+		getFormElement();
+	})
+});
+
+function getFormElement(){
+	//var elements=$('form').serializeArray();
+//	var $radio=$('input[type=checkbox], input[type=radio]');
+//	//console.log('$radio => '+$radio.length);
+//	$.each($radio, function(){
+//		//console.log('name => '+this.name);
+//		if($("input[name='"+this.name+"']:checked").length==0){
+//			elements.push({name:this.name,value:0});
+//		}
+//	});
+	
+	var a=$(form).ghostsf_serialize();
+	
+	console.log(a);	
+}
+
+$.fn.ghostsf_serialize = function () {
+	var a = this.serializeArray();
+	var $radio = $('input[type=radio],input[type=checkbox]', this);
+	var temp = {};
+	$.each($radio, function () {
+		if (!temp.hasOwnProperty(this.name)) {
+			if ($("input[name='" + this.name + "']:checked").length == 0) {
+				temp[this.name] = "";
+				a.push({name: this.name, value: ""});
+			}
+		}
+	});
+	//console.log(a);
+	return jQuery.param(a);
+};
+</script>
+</body>
+</html>

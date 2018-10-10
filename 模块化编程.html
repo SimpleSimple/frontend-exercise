@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS-模块化编程</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+// 示例1
+var module1=new Object({
+	_count:0,
+	m1:function(){
+		return 'module1.m1()';
+	},
+	m2: function(){
+		return 'module1.m2()';
+	}
+});
+console.info(module1.m1());
+console.info(module1._count);
+module1._count=5;
+console.info(module1._count);
+
+// 示例2
+var module2=(function(){
+	var _count=0;
+	var m1=function(){
+		return 'module2.m1()';	
+	};
+	var m2=function(){
+		return 'module2.m2()';
+	};
+	
+	return {
+		m1: m1,
+		m2: m2	
+	}
+})();
+console.info(module2._count);
+
+// 示例3
+var module3=(function (mod){
+	console.info(mod);
+	mod.m1=function (){
+		
+	};
+	mod.m2=function (){
+		
+	};
+	return mod;
+	
+})(window.module3||{});
+
+
+</script>
+</body>
+</html>
