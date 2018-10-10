@@ -885,7 +885,7 @@
         type: type,
         url: url,
         data: data,
-        contentType: 'json',
+        contentType: '',
         responseType: '',
         successEvent: function (dateCall) {
           successEvent(dateCall, this);
