@@ -6,7 +6,11 @@
 </head>
 
 <body>
-<div id="demo">{{fullName}}</div>
+<div id="demo">{{id}}<br/>{{fullName}}<br/>
+<template v-for="item in user">
+{{item}}
+</template>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
@@ -26,26 +30,33 @@ window.onload = function () {
             el: '#demo',
             data: {
                 id: 0,
-                isLoad: !1,
+                user:[1,2,3],
                 firstName: 'firstname',
                 lastName: 'lastname',
-                fullName: 'fullNAME'
+                fullName: 'fullName'
             },
-            watch:{
+            /*watch:{
                 id:function(val){
                     this.fullName=  this.firstName + ' ' + this.lastName + ' ' + val;
                 }
-            },
-            computed: {
+            },*/
+            /*computed: {
                 fullName: function(){
                     return this.firstName + ' ' + this.lastName + ' ' + this.id
                 }                
-            }
+            }*/
         })
         var intervalRun = function () {
             var rnd = Math.random();
-            console.info('rnd => ' + rnd);            
+            //console.info('rnd => ' + rnd);
             vm.id = rnd;
+			var tmparr=[];
+			/*for(var i=0;i<3;i++){
+				var tmprnd=Math.random();
+				tmparr.push(tmprnd);
+			}*/
+			vm.user.push(rnd);
+			//console.info(vm);
         }
         var timer = setInterval(intervalRun, 2000);
     }
